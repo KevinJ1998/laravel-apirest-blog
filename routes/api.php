@@ -21,11 +21,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register','UserController@register');
 Route::post('login','UserController@authenticate');
-Route::get('articles','ArticleContrler@index');
+Route::get('articles','ArticleControler@index');
 Route::group(['middleware' => 'jwt.verify'], function() {
-    Route::get('user','UserController@getAuthenticate');
+    Route::get('user','UserController@getAuthenticatedUser');
     Route::get('articles/{article}','ArticleControler@show');
-    Route::post('articles','ArticleContrler@store');
+    Route::post('articles','ArticleControler@store');
     Route::put('articles/{article}','ArticleControler@update');
-    Route::delete('articles/{article}','ArticleContrler@delete');
+    Route::delete('articles/{article}','ArticleControler@delete');
 });
