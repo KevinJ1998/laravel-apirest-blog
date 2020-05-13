@@ -22,8 +22,8 @@ class Article extends JsonResource
             'body' => $this->body,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'user' => '/api/user/' - $this->user_id,
-            'category' => '/api/category/' - $this->category_id
+            'user' => '/api/user/' . $this->user_id,
+            'category' => '/api/category/' . $this->category_id
         ];
     }
 }

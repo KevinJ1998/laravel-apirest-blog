@@ -23,9 +23,16 @@ Route::post('register','UserController@register');
 Route::post('login','UserController@authenticate');
 Route::get('articles','ArticleControler@index');
 Route::group(['middleware' => 'jwt.verify'], function() {
-    Route::get('user','UserController@getAuthenticatedUser');
+    //articles
     Route::get('articles/{article}','ArticleControler@show');
     Route::post('articles','ArticleControler@store');
     Route::put('articles/{article}','ArticleControler@update');
     Route::delete('articles/{article}','ArticleControler@delete');
+
+    //comments
+    Route::get('articles/{article}/comments','CommentController@index');
+    Route::get('articles/{article}/comments/{comment}','CommentController@show');
+    Route::post('articles/{article}/comments','CommentController@store');
+    Route::put('articles/{article}/comments/{comment}','CommentController@update');
+    Route::delete('articles/{article}/comments/{comment}','CommentController@delete');
 });
