@@ -14,9 +14,11 @@ class ArticlesTableSeeder extends Seeder
     public function run()
     {
         // Vaciar la tabla
-        // Article::truncate();
+        Article::truncate();
         $faker = \Faker\Factory::create();
         $users = App\User::all();
+
+        $image_name = $faker->image('public/storage/articles',400, 300, null, false);
 
         foreach ($users as $user) {
             JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
@@ -24,10 +26,12 @@ class ArticlesTableSeeder extends Seeder
             //con el usuario creamos algunos articulos
             $num_articles = 5;
             for ($i = 1; $i < $num_articles; $i++) {
+
                 Article::create([
                     'title' => $faker->sentence,
                     'body' => $faker->paragraph,
-                    'category_id' => $faker->numberBetween(1, 3)
+                    'category_id' => $faker->numberBetween(1, 3),
+                    'image' => 'articles/'. $image_name
                 ]);
             }
         }
